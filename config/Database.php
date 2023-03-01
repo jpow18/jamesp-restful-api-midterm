@@ -8,13 +8,7 @@
     private $username;
     private $password;
 
-    public function __construct() {
-      $this->username = getenv('USERNAME');
-      $this->password = getenv('PASSWORD');
-      $this->dbname = getenv('DBNAME');
-      $this->host = getenv('HOST');
-      $this->port = getenv('PORT');
-    }
+    
 
     public function connect() {
       // Check if connection already exists
@@ -22,8 +16,9 @@
         // connection already exists, return it
         return $this->conn;
       } else {
-        
-        $dsn = "postgres://{$this->username}:{$this->password}@{$this->host}.oregon-postgres.render.com/{$this->dbname};";
+
+        $dsn = "postgres://{$this->username}:{$this->password}@{$this->host}" . 
+        ".oregon-postgres.render.com/{$this->dbname};";
 
         try {
           $this->conn = new PDO($dsn, $this->username, $this->password);
