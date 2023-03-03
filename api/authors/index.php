@@ -9,19 +9,15 @@
     exit();
   } 
 
-  include_once "../../config/Database.php";
-  include_once "../../models/Author.php";
+  // check if $db is not null before instantiating the Author object
+  if ($method === 'GET') {
+    include_once "./read.php";
 
-  // Instantiate DB and connect
-  $database = new Database();
-  $db = $database->connect();
-
-  // Instantiate Author object
-  $author = new Author($db);
-
-  // Get HTTP method
-  $method = $_SERVER['REQUEST_METHOD'];
-
-  echo $method;
+  } else {
+    // If $db is null, there was an error connecting to the database
+    echo json_encode(
+      array('message' => 'Database connection error')
+    );
+  }
 
 ?>
