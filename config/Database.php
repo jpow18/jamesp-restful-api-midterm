@@ -23,8 +23,8 @@
         return $this->conn;
       } else {
 
-        $dsn = "pgsql:host={$this->host};port={$this->port};" . 
-        "dbname={$this->dbname};";
+        $dsn = "postgres://{$this->username}:{$this->password}@{$this->host}" . 
+        ".oregon-postgres.render.com/{$this->dbname};";
 
         try {
           $this->conn = new PDO($dsn, $this->username, $this->password);
