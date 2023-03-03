@@ -1,5 +1,15 @@
 <?php
 
+  include_once "../../config/Database.php";
+  include_once "../../models/Author.php";
+
+  // Instantiate DB and connect
+  $database = new Database();
+  $db = $database->connect();
+
+  // Instantiate Author object
+  $author = new Author($db);
+
   // Read Author query
   $result = $author->read();
   // Get row count
@@ -21,10 +31,9 @@
 
         // Push to "data"
         array_push($author_arr['data'], $author_item);
-
-        // Turn to JSON and output
-        echo json_encode($posts_arr);
-    }
+      }
+      // Turn to JSON and output
+      echo json_encode($author_arr);
   } else {
     // No Authors
     echo json_encode(
