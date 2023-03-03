@@ -9,4 +9,19 @@
     exit();
   } 
 
+  include_once "../../config/Database.php";
+  include_once "../../models/Author.php";
+
+  // Instantiate DB and connect
+  $database = new Database();
+  $db = $database->connect();
+
+  // Instantiate Author object
+  $author = new Author($db);
+
+  // Get HTTP method
+  $method = $_SERVER['REQUEST_METHOD'];
+
+  echo $method;
+
 ?>
