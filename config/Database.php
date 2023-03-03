@@ -29,6 +29,9 @@
         try {
           $this->conn = new PDO($dsn, $this->username, $this->password);
           $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+          // Return the connection object
+          return $this->conn;
         } catch (PDOException $e) {
           echo 'Connection Error: ' . $e->getMessage();
         }
