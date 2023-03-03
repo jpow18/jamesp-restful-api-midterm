@@ -37,7 +37,7 @@
   } else {
     // No Authors
     echo json_encode(
-      array('message' => 'No Authors Found')
+      array('message' => 'author_id Not Found')
     );
   }
 ?>

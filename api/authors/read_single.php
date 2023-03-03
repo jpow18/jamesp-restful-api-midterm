@@ -22,6 +22,14 @@
     'author' => $author->author
   );
 
-  // Make JSON
-  print_r(json_encode($author_arr));
+  if (!empty($author_array)) {
+    // Make JSON
+    print_r(json_encode($author_arr));
+  } else {
+    // No Authors
+    echo json_encode(
+      array('message' => 'author_id Not Found')
+    );
+  }
+
 ?>
