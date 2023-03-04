@@ -17,8 +17,7 @@
       include_once "./read.php";
     }
   } else if ($method === 'POST') {
-    include_once "./create.php";
-
+      include_once "./create.php";
   } else {
     // If $db is null, there was an error connecting to the database
     echo json_encode(
