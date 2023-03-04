@@ -11,8 +11,11 @@
 
   // check if $db is not null before instantiating the Author object
   if ($method === 'GET') {
-    include_once "./read.php";
-
+    if (isset($_GET['id'])) {
+      include_once "./read_single.php";
+    } else {
+      include_once "./read.php";
+    }
   } else if ($method === 'POST') {
     include_once "./create.php";
 
