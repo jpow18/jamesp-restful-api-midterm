@@ -55,6 +55,11 @@
 
     // Create Author
     public function create() {
+      // Check if author field is present
+      if (!isset($this->author)) {
+        return false;
+      }
+
       // query
       $query = 'INSERT INTO ' . $this->table . ' (author)
         VALUES (:author)';
@@ -70,6 +75,8 @@
 
       // Execute query
       if ($stmt->execute()) {
+        // Get ID of the newly created author
+        $this->id = $this->conn->lastInsertId();
         return true;
       }
 
