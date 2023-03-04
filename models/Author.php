@@ -55,11 +55,6 @@
 
     // Create Author
     public function create() {
-      // Check if author field is present
-      if (!isset($this->author)) {
-        return false;
-      }
-
       // query
       $query = 'INSERT INTO ' . $this->table . ' (author)
         VALUES (:author)';
