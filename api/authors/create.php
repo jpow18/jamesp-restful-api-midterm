@@ -7,6 +7,12 @@ include_once "../../models/Author.php";
 $database = new Database();
 $db = $database->connect();
 
+if (isset($_POST['author'])) {
+  echo json_encode(
+    array('message' => 'Missing Required Parameters')
+  );
+}
+
 // Instantiate Author object
 $author = new Author($db);
 
