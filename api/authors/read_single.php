@@ -26,19 +26,10 @@
     // Make JSON
     print_r(json_encode($author_arr));
   } else {
-    // No Authors
-    $message = 'author_id Not Found';
-    $response = array('message' => $message);
-
-    // Encode the response as JSON with unescaped slashes
-    $json = json_encode($response, JSON_UNESCAPED_SLASHES);
-
-    // Replace double quotes with single quotes
-    $json = str_replace('"', "'", $json);
-
-    // Output the JSON response
-    echo $json;
-
+  // No Authors
+  echo json_encode(
+    array('message' => 'author_id Not Found')
+  );
   }
 
 ?>
