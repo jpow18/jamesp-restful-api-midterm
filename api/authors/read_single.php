@@ -22,7 +22,7 @@
     'author' => $author->author
   );
 
-  if (!empty($author_array)) {
+  if (!empty($author_arr)) {
     // Make JSON
     print_r(json_encode($author_arr));
   } else {
