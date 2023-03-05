@@ -100,7 +100,7 @@
 
     // Bind data
     $stmt->bindParam(':author', $this->author);
-    $stmt->bindParam(':id', $this->author);
+    $stmt->bindParam(':id', $this->id);
 
     // Execute query
     if ($stmt->execute()) {
