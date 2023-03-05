@@ -18,11 +18,15 @@
     }
   } else if ($method === 'POST') {
       include_once "./create.php";
+  } else if ($method === 'PUT') {
+      include_once "./update.php";
+  } else if ($method === 'DELETE') {
+      include_once "./delete.php";
   } else {
-    // If $db is null, there was an error connecting to the database
-    echo json_encode(
-      array('message' => 'Database connection error')
-    );
+      // If $db is null, there was an error connecting to the database
+      echo json_encode(
+        array('message' => 'Database connection error')
+      );
   }
 
 ?>
