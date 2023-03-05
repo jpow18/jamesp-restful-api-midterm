@@ -104,8 +104,6 @@
 
     // Execute query
     if ($stmt->execute()) {
-      // Get ID of the newly created author
-      $this->id = $this->conn->lastInsertId();
       return true;
     }
 
