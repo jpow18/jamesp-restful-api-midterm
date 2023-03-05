@@ -7,27 +7,26 @@ include_once "../../models/Author.php";
 $database = new Database();
 $db = $database->connect();
 
-if (isset($_POST['author'])) {
-  echo json_encode(
-    array('message' => 'Missing Required Parameters')
-  );
-}
-
 // Instantiate Author object
 $author = new Author($db);
 
 // Get raw posted data
 $data = json_decode(file_get_contents("php://input"));
 
-$author->author = $data->author;
-
-// Create author
-if($author->create()) {
-  echo 'created author (' . $author->id . ', ' . $author->author . ')';
-} else {
+// Check if 'author' parameter exists in the JSON data
+if (!$data || !isset($data->author)) {
   echo json_encode(
-    array('message' => 'author_id not found')
+    array('message' => 'Missing Required Parameters')
   );
+} else {
+  $author->author = $data->author;
+  // Create author
+  if($author->create()) {
+    echo 'created author (' . $author->id . ', ' . $author->author . ')';
+  } else {
+    echo json_encode(
+      array('message' => 'author_id not found')
+    );
+  }
 }
-
 ?>
