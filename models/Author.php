@@ -112,5 +112,31 @@
 
     return false;
     }
+
+    // Delete author
+    public function delete() {
+      // Query
+      $query = 'DELETE FROM ' . $this->table . 
+      ' WHERE id = :id';
+
+      // Prepare statement
+      $stmt = $this->conn->prepare($query);
+
+      // Clean id
+      $this->id = htmlspecialchars(strip_tags($this->id));
+
+      // Bind data
+      $stmt->bindParam(':id', $this->id);
+
+      // Execute query
+      if ($stmt->execute()) {
+        return true;
+      }
+      
+      // Print error if something goes wrong
+      printf("Error: %s.\n", $stmt->error);
+
+      return false;
+    }
   }
 ?>
