@@ -57,7 +57,7 @@
     public function create() {
       // query
       $query = 'INSERT INTO ' . $this->table . ' (author)
-        VALUES (:author)';
+        VALUES (:author) RETURNING id';
 
       // Prepare statement
       $stmt = $this->conn->prepare($query);
@@ -71,7 +71,8 @@
       // Execute query
       if ($stmt->execute()) {
         // Get ID of the newly created author
-        $this->id = $this->conn->lastInsertId();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $this->id = $row['id'];
         return true;
       }
 
@@ -79,6 +80,39 @@
       printf("Error: %s.\n", $stmt->error);
 
       return false;
+    }
+
+  // Update Author
+  public function update()
+  {
+    // query
+    $query = 'UPDATE ' . $this->table . ' 
+      SET
+        author = :author
+      WHERE
+        id = :id';
+
+    // Prepare statement
+    $stmt = $this->conn->prepare($query);
+
+    // Clean data
+    $this->author = htmlspecialchars(strip_tags($this->author));
+
+    // Bind data
+    $stmt->bindParam(':author', $this->author);
+    $stmt->bindParam(':id', $this->author);
+
+    // Execute query
+    if ($stmt->execute()) {
+      // Get ID of the newly created author
+      $this->id = $this->conn->lastInsertId();
+      return true;
+    }
+
+    // Print error if something goes wrong
+    printf("Error: %s.\n", $stmt->error);
+
+    return false;
     }
   }
 ?>
