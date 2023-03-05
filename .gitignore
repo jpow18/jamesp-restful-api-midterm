@@ -1,2 +1,5 @@
 .htaccess
 output.txt
+node_modules
+package-lock.json
+package.json
