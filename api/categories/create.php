@@ -22,8 +22,12 @@ if (!$data || !isset($data->category)) {
   $category->category = $data->category;
   // Create category
   if($category->create()) {
-    echo 'created category (' . $category->id . ', ' . $category->category . ')';
-  } else {
+    echo json_encode(
+      array(
+        'id' => $author->id,
+        'author' => $author->author 
+      )); 
+      } else {
     echo json_encode(
       array('message' => 'category_id not found')
     );
