@@ -22,7 +22,11 @@
     $author->id = $data->id;
     // Delete author
     if ($author->delete()) {
-      echo $author->id . ' of deleted author';
+      echo json_encode(
+        array(
+          'id' => $author->id
+        )
+      );
     } else {
       echo json_encode(
         array('message' => 'author_id not found')
