@@ -25,7 +25,7 @@ if (!$data || !isset($data->category)) {
     echo json_encode(
       array(
         'id' => $category->id,
-        'author' => $category->author 
+        'category' => $category->category 
       )); 
       } else {
     echo json_encode(
