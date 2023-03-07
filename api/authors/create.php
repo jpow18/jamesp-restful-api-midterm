@@ -22,7 +22,9 @@ if (!$data || !isset($data->author)) {
   $author->author = $data->author;
   // Create author
   if($author->create()) {
-    echo 'created author (' . $author->id . ', ' . $author->author . ')';
+    echo json_encode(
+      array('message' => 'created author (' . $author->id . ', ' . $author->author . ')'
+    ));
   } else {
     echo json_encode(
       array('message' => 'author_id not found')
