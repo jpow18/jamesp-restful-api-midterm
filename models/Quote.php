@@ -18,7 +18,8 @@
     // Get quotes
     public function read() {
       // Create query
-      $query = 'SELECT q.id, q.quote, a.author as author_name, c.category as category_name 
+      $query = 'SELECT q.id, q.quote, a.author as author_name,
+       c.category as category_name 
         FROM quotes q 
         LEFT JOIN authors a ON q.author_id = a.id 
         LEFT JOIN categories c ON q.category_id = c.id
