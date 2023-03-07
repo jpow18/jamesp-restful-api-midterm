@@ -9,26 +9,25 @@
     exit();
   } 
 
-  include_once "../authors/read.php";
 
-  // // check if $db is not null before instantiating the Author object
-  // if ($method === 'GET') {
-  //   if (isset($_GET['id'])) {
-  //     include_once "./read_single.php";
-  //   } else {
-  //     include_once "./read.php";
-  //   }
-  // } else if ($method === 'POST') {
-  //     include_once "./create.php";
-  // } else if ($method === 'PUT') {
-  //     include_once "./update.php";
-  // } else if ($method === 'DELETE') {
-  //     include_once "./delete.php";
-  // } else {
-  //     // If $db is null, there was an error connecting to the database
-  //     echo json_encode(
-  //       array('message' => 'Database connection error')
-  //     );
-  // }
+  // check if $db is not null before instantiating the Author object
+  if ($method === 'GET') {
+    if (isset($_GET['id'])) {
+      include_once "./read_single.php";
+    } else {
+      include_once "./read.php";
+    }
+  } else if ($method === 'POST') {
+      include_once "./create.php";
+  } else if ($method === 'PUT') {
+      include_once "./update.php";
+  } else if ($method === 'DELETE') {
+      include_once "./delete.php";
+  } else {
+      // If $db is null, there was an error connecting to the database
+      echo json_encode(
+        array('message' => 'Database connection error')
+      );
+  }
 
 ?>
