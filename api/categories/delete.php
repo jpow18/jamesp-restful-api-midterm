@@ -22,7 +22,11 @@
     $category->id = $data->id;
     // Delete category
     if ($category->delete()) {
-      echo $category->id . ' of deleted category';
+      echo json_encode(
+        array(
+          'id' => $category->id
+        )
+      );
     } else {
       echo json_encode(
         array('message' => 'category_id not found')
