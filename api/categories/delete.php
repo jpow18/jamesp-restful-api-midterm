@@ -13,24 +13,21 @@
   // Get raw posted data
   $data = json_decode(file_get_contents("php://input"));
 
-  // Check if 'category' and 'id' parameters exist in the JSON data
+// Check if 'category' and 'id' parameters exist in the JSON data
+  $response = array();
+
   if (!$data || !isset($data->id)) {
-    echo json_encode(
-      array('message' => 'Missing Required Parameters')
-    );
+    $response['message'] = 'Missing Required Parameters';
   } else {
     $category->id = $data->id;
     // Delete category
     if ($category->delete()) {
-      echo json_encode(
-        array(
-          'id' => $category->id
-        )
-      );
+      $response['id'] = $category->id;
     } else {
-      echo json_encode(
-        array('message' => 'category_id not found')
-      );
+      $response['message'] = 'category_id not found';
     }
   }
+
+  echo json_encode($response);
+
 ?>
