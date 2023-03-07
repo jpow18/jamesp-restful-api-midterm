@@ -23,7 +23,10 @@
     $author->id = $data->id;
     // Update author
     if ($author->update()) {
-      echo 'updated author (' . $author->id . ', ' . $author->author . ')';
+      echo array(
+        'id' => $author->id,
+        'author' => $author->author
+      );
     } else {
       echo json_encode(
         array('message' => 'author_id not found')
