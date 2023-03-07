@@ -24,7 +24,8 @@ if (!$data || !isset($data->author)) {
   if($author->create()) {
     echo json_encode(
       array(
-        'created author' => '(' . $author->id . ', ' . $author->author . ')'
+        'id' => $author->id,
+        'author' => $author->author
     ));
   } else {
     echo json_encode(
