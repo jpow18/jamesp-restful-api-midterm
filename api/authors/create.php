@@ -23,7 +23,8 @@ if (!$data || !isset($data->author)) {
   // Create author
   if($author->create()) {
     echo json_encode(
-      array('message' => 'created author (' . $author->id . ', ' . $author->author . ')'
+      array(
+        'created author' => '(' . $author->id . ', ' . $author->author . ')'
     ));
   } else {
     echo json_encode(
