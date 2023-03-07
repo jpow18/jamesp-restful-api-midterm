@@ -4,16 +4,18 @@
     private $conn;
     private $table = 'quotes';
 
-    // category Properties
+    // Quote properties
     public $id;
-    public $category;
+    public $quote;
+    public $author_id;
+    public $category_id;
 
     // Constructor with DB
     public function __construct($db) {
       $this->conn = $db;
     }
 
-    // Get categorys
+    // Get quotes
     public function read() {
       // Create query
       $query = 'SELECT * FROM ' . $this->table;
