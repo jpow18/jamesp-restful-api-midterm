@@ -43,11 +43,11 @@ if (!$data || !isset($data->quote) || !isset($data->author_id) ||
       // Determine which key caused the error
       if ($key_value == $quote->category_id) {
         echo json_encode(
-          array('message' => 'Category ' . $category_name . ' not found')
+          array('message' => 'category_id Not Found')
         );
       } else if ($key_value == $quote->author_id) {
         echo json_encode(
-          array('message' => 'Author ' . $author_name . ' not found')
+          array('message' => 'author_id Not Found')
         );
       } else {
         echo json_encode(
