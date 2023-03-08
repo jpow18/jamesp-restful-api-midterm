@@ -24,15 +24,9 @@ if (!$data || !isset($data->quote) || !isset($data->author_id) ||
   $quote->quote = $data->quote;
   $quote->author_id = $data->author_id;
   $quote->category_id = $data->category_id;
-  if (!$quote->author_id) {
-    echo json_encode(
-      array('message' => 'author_id Not Found')
-    );
-  } else if (!$quote->category_id) {
-    echo json_encode(
-      array('message' => 'category_id Not Found')
-    );
-  } else if ($quote->create()) { // Create quote
+  // Create quote
+  try {
+  if($quote->create()) {
     echo json_encode(
       array(
         'id' => $quote->id,
@@ -40,10 +34,17 @@ if (!$data || !isset($data->quote) || !isset($data->author_id) ||
         'author_id' => $quote->author_id,
         'category_id' => $quote->category_id
       )); 
-      } else {
-    echo json_encode(
-      array('message' => 'quote_id not found')
-    );
+    } 
+  }catch (PDOException $e) {
+      if ($e->getCode() == '23503') {
+        echo json_encode(
+          array('message' => 'quote_id Not Found')
+        );
+    } else {
+      echo json_encode(
+        array('message' => 'author_id Not Found')
+      );
+    }
   }
 }
 
