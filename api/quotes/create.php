@@ -24,8 +24,15 @@ if (!$data || !isset($data->quote) || !isset($data->author_id) ||
   $quote->quote = $data->quote;
   $quote->author_id = $data->author_id;
   $quote->category_id = $data->category_id;
-  // Create quote
-  if($quote->create()) {
+  if (!$quote->author_id) {
+    echo json_encode(
+      array('message' => 'author_id Not Found')
+    );
+  } else if (!$quote->category_id) {
+    echo json_encode(
+      array('message' => 'category_id Not Found')
+    );
+  } else if ($quote->create()) { // Create quote
     echo json_encode(
       array(
         'id' => $quote->id,
