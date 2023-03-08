@@ -37,15 +37,27 @@ if (!$data || !isset($data->quote) || !isset($data->author_id) ||
     } 
   }catch (PDOException $e) {
       if ($e->getCode() == '23503') {
+      // Get the key value that caused the error
+      $key_value = substr($e->getMessage(), strpos($e->getMessage(), '(')+1, strpos($e->getMessage(), ')')-strpos($e->getMessage(), '(')-1);
+      
+      // Determine which key caused the error
+      if ($key_value == $quote->category_id) {
         echo json_encode(
-          array('message' => 'quote_id Not Found')
+          array('message' => 'Category ' . $category_name . ' not found')
         );
+      } else if ($key_value == $quote->author_id) {
+        echo json_encode(
+          array('message' => 'Author ' . $author_name . ' not found')
+        );
+      } else {
+        echo json_encode(
+          array('message' => $e->getMessage())
+        );
+      }
     } else {
       echo json_encode(
-        array('message' => 'author_id Not Found')
+        array('message' => $e->getMessage())
       );
     }
   }
 }
-
-?>
