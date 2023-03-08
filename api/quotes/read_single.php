@@ -1,7 +1,7 @@
 <?php
 
   include_once "../../config/Database.php";
-  include_once "../../models/Quotes.php";
+  include_once "../../models/Quote.php";
 
   // Instantiate DB and connect
   $database = new Database();
@@ -20,7 +20,9 @@
     // Create array
     $quote_arr = array (
       'id' => $quote->id,
-      'quote' => $quote->quote
+      'quote' => $quote->quote,
+      'author' => $quote->author_id,
+      'category' => $quote->category_id
     );
   
     if (!empty($quote_arr) && $quote_arr['quote'] !== null) {
