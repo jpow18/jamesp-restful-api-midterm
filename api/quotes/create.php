@@ -22,6 +22,8 @@ if (!$data || !isset($data->quote) || !isset($data->author_id) ||
   );
 } else {
   $quote->quote = $data->quote;
+  $quote->author_id = $data->author_id;
+  $quote->category_id = $data->category_id;
   // Create quote
   if($quote->create()) {
     echo json_encode(
@@ -37,3 +39,5 @@ if (!$data || !isset($data->quote) || !isset($data->author_id) ||
     );
   }
 }
+
+?>
