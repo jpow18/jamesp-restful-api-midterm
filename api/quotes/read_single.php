@@ -30,14 +30,14 @@
       print_r(json_encode($quote_arr));
     } else {
     // No Quotes
-    echo json_encode(
-      array('message' => 'No Quotes Found')
+    echo str_replace('"', "'", json_encode(
+      array('message' => 'No Quotes Found'))
     );
     }
   } else {
     // No id parameter
     echo json_encode(
-    array('message' => 'No Quotes Found')
+    array('message' => 'quote_id Not Found')
     );
   }
 ?>
