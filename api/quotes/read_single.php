@@ -37,7 +37,7 @@
   } else {
     // No id parameter
     echo json_encode(
-    array('message' => 'quote_id Not Found')
+    array('message' => 'No Quotes Found')
     );
   }
 ?>
