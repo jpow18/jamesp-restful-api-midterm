@@ -30,8 +30,8 @@
       print_r(json_encode($quote_arr));
     } else {
     // No Quotes
-    echo str_replace('"', "'", json_encode(
-      array('message' => 'No Quotes Found'))
+    echo json_encode(
+      array('message' => 'No Quotes Found')
     );
     }
   } else {
