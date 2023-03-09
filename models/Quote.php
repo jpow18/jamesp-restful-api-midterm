@@ -120,7 +120,7 @@
 
       // Bind data
       $stmt->bindParam(':quote', $this->quote);
-      $stmt->bindParam(':quthor_id', $this->author_id);
+      $stmt->bindParam(':author_id', $this->author_id);
       $stmt->bindParam(':category_id', $this->category_id);
       $stmt->bindParam(':id', $this->id);
 
