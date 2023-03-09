@@ -40,24 +40,16 @@ if (!$data || !isset($data->quote) || !isset($data->author_id) ||
       // Get the key value that caused the error
       $key_value = substr($e->getMessage(), strpos($e->getMessage(), '(')+1, strpos($e->getMessage(), ')')-strpos($e->getMessage(), '(')-1);
       
-      // Determine which key caused the error
-      if ($key_value == $quote->category_id) {
-        echo json_encode(
-          array('message' => 'category_id Not Found')
-        );
-      } else if ($key_value == $quote->author_id) {
+      // check if author_id or category_id is not found
+      if ($key_value === 'author_id') {
         echo json_encode(
           array('message' => 'author_id Not Found')
         );
       } else {
         echo json_encode(
-          array('message' => $e->getMessage())
+          array('message' => 'category_id Not Found')
         );
       }
-    } else {
-      echo json_encode(
-        array('message' => $e->getMessage())
-      );
     }
   }
 }
