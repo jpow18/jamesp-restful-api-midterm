@@ -28,5 +28,4 @@
         array('message' => 'Database connection error')
       );
   }
-
 ?>
