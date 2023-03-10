@@ -128,7 +128,31 @@
       if ($stmt->execute() && $stmt->rowCount() > 0) {
         return true;
       }
-      
+
+      return false;
+    }
+
+    // Delete quote
+    public function delete()
+    {
+      // Query
+      $query = 'DELETE FROM ' . $this->table .
+      ' WHERE id = :id';
+
+      // Prepare statement
+      $stmt = $this->conn->prepare($query);
+
+      // Clean id
+      $this->id = htmlspecialchars(strip_tags($this->id));
+
+      // Bind data
+      $stmt->bindParam(':id', $this->id);
+
+      // Execute query
+      if ($stmt->execute()) {
+        return true;
+      }
+
       return false;
     }
   }
