@@ -149,12 +149,11 @@
       $stmt->bindParam(':id', $this->id);
 
       // Execute query
-      if ($stmt->execute()) {
+      if ($stmt->execute() && $stmt->rowCount() > 0) {
         return true;
       }
 
       return false;
     }
   }
-  
 ?>
