@@ -13,7 +13,8 @@ $quote = new Quote($db);
 // Get raw posted data
 $data = json_decode(file_get_contents("php://input"));
 
-// Check if 'quote' and 'id' parameters exist in the JSON data
+// Check if 'quote', 'id', 'author_id', and 'category_id'
+// parameters exist in the JSON data
 if (!$data || !isset($data->quote) || !isset($data->id)
   || !isset($data->author_id) || !isset($data->category_id)) {
   echo json_encode(
@@ -24,11 +25,6 @@ if (!$data || !isset($data->quote) || !isset($data->id)
   $quote->author_id = $data->author_id;
   $quote->category_id = $data->category_id;
   $quote->id = $data->id;
-  if ($quote->quote === null) {
-    echo json_encode(
-      array('message' => 'No Quotes Found')
-    );
-  }
   // Create quote
   try {
     if ($quote->update()) {
