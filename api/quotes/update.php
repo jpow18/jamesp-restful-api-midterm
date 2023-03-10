@@ -24,14 +24,14 @@ if (!$data || !isset($data->quote) || !isset($data->id)
   $quote->author_id = $data->author_id;
   $quote->category_id = $data->category_id;
   $quote->id = $data->id;
-  if ($quote->quote === '') {
+  if ($quote->quote === null) {
     echo json_encode(
       array('message' => 'No Quotes Found')
     );
   }
   // Create quote
   try {
-    if ($quote->create()) {
+    if ($quote->update()) {
       echo json_encode(
         array(
           'id' => $quote->id,
@@ -39,6 +39,10 @@ if (!$data || !isset($data->quote) || !isset($data->id)
           'author_id' => $quote->author_id,
           'category_id' => $quote->category_id
         )
+      );
+    } else {
+      echo json_encode(
+        array('message' => 'No Quotes Found')
       );
     }
   } catch (PDOException $e) {
