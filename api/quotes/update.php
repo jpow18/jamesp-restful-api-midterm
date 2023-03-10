@@ -24,7 +24,7 @@ if (!$data || !isset($data->quote) || !isset($data->id)
   $quote->author_id = $data->author_id;
   $quote->category_id = $data->category_id;
   $quote->id = $data->id;
-  if ($quote->quote === null) {
+  if ($quote->quote === '') {
     echo json_encode(
       array('message' => 'No Quotes Found')
     );
