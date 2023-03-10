@@ -35,6 +35,10 @@ if (!$data || !isset($data->quote) || !isset($data->id)
           'category_id' => $quote->category_id
         )
       );
+    } else {
+      echo json_encode(
+        array('message' => 'No Quotes Found')
+      );
     }
   } catch (PDOException $e) {
     if ($e->getCode() == '23503') {
@@ -51,10 +55,6 @@ if (!$data || !isset($data->quote) || !isset($data->id)
           array('message' => 'category_id Not Found')
         );
       }
-    } else {
-      echo json_encode(
-        array('message' => 'No Quotes Found')
-      );
-    }
+    } 
   }
 }
